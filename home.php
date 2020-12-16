@@ -73,7 +73,7 @@
 
     <?php foreach($videos as $video): ?>
         <div class="video">
-            <div class="video2"> 
+            <div> 
                 <iframe src="<?php echo(str_replace("watch?v=",$embed , $video['url'])) ?>" frameborder="1"></iframe><br><br>
                 <h2><?php echo $video['title'] ?></h2><br>
             </div>
@@ -83,7 +83,6 @@
                     <input type="submit" value="Go to video page" class="button">
                 </form>
             
-
                 <?php if(isset($_SESSION['nickname'])): ?>
                     <form action="delete.php" method="post">
                         <input type="hidden" name="delete" value="<?php echo $video['id'] ?>">

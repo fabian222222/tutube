@@ -28,7 +28,7 @@
 
     $video = $query->fetch();
 
-    if(isset($title) && $title != ""){
+    if(isset($title) && $title != "" && $title < 101){
         try{
             $database = new PDO('mysql:host=localhost;dbname=tutube;charset=utf8', 'root', 'root');
         }catch (Exeption $e){
@@ -46,7 +46,7 @@
 
     }
 
-    if(isset($link) && $link != "" && preg_match($link_validator, $link)){
+    if(isset($link) && $link != "" && preg_match($link_validator, $link) && $link < 256){
 
         try{
             $database = new PDO('mysql:host=localhost;dbname=tutube;charset=utf8', 'root', 'root');
@@ -158,6 +158,7 @@
             <div>
                 <iframe src="<?php echo(str_replace("watch?v=",$embed , $video['url'])) ?>" frameborder="1"></iframe><br><br>
                 <div>
+
                     <h2><?php echo $video['title'] ?></h2><br>
                     <div class="comment"><?php echo $video['comment'] ?></div>
                
@@ -167,13 +168,18 @@
                             <input type="submit" class="button" value="delete this video">
                         </form>
                     <?php endif; ?>
+
                 </div>
             </div>
         </div>
     </div>
+
     <?php if(isset($_SESSION['nickname'])): ?>
+
     <form action="#" method="post" class=form2>
+
         <input type="hidden" name="id" value="<?php echo $video['id'] ?>">
+
         <input type="text" name="title" id="title" placeholder="Change title :">
         <?php if(isset($title)): ?>
             <?php if(strlen($title) > 100): ?>
@@ -183,15 +189,17 @@
             <?php endif; ?>
         <?php endif; ?>
         <br><br>
+
         <input type="text" name="link" id="link" placeholder="Change link :">
         <?php if(isset($link)): ?>
             <?php if(!empty($link) && !preg_match($link_validator, $link) || strlen($link) > 255): ?>
                 <p>Link is not valid</p>
-            <?php elseif(!empty($link) && strlen($link) < 255 && preg_match($link_validator, $link)): ?>
+            <?php elseif(!empty($link) && strlen($link) < 256 && preg_match($link_validator, $link)): ?>
                 <p>Go to home page and see the new video !</p>
             <?php endif; ?>
         <?php endif; ?>
         <br><br>
+
         <textarea name="description" id="description" placeholder="Change description"></textarea>
         <?php if(isset($description)): ?>
             <?php if(empty($description)): ?>
@@ -201,9 +209,13 @@
             <?php endif; ?>
         <?php endif; ?>
         <br><br>
+
         <input type="submit" class="button" value="Update video">
+
     </form>
+
     <?php endif; ?>
+
 </body>
 </body>
 </html>

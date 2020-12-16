@@ -28,7 +28,6 @@ if(isset($_POST['username'])){
         ]);
 
     $users_nickname = $query->fetch();
-
 }
 
 if(isset($_POST['mail'])){
@@ -50,7 +49,7 @@ if(isset($_POST['mail'])){
 
 if(isset($_POST['username']) && isset($_POST['mail']) && isset($_POST['password'])){
 
-    if(preg_match($username_validator, $username) && strlen($username) >= 4 && strlen($username) < 50 && preg_match($mail_validator,$mail) && $mail != "" && strlen($mail) < 255 && strlen($password) >= 9 && strlen($password) < 255){
+    if(preg_match($username_validator, $username) && strlen($username) >= 4 && strlen($username) < 50 && preg_match($mail_validator,$mail) && $mail != "" && strlen($mail) < 256 && strlen($password) >= 9 && strlen($password) < 256){
 
         if(!$users_nickname && !$users_mail){
 
@@ -129,11 +128,13 @@ if(isset($_POST['username']) && isset($_POST['mail']) && isset($_POST['password'
     <header>
         <?php require('menu.php') ?>
     </header>
+
     <?php if(isset($_POST['username']) && isset($_POST['mail']) && isset($_POST['password'])): ?>
         <?php if(preg_match($username_validator, $username) && strlen($username) >= 4 && strlen($username) < 50 && preg_match($mail_validator,$mail) && $mail != "" && strlen($mail) < 255 && strlen($password) >= 9 && strlen($password) < 255): ?>
             <p class="success">You get registered with success, now try to connect</p>
         <?php endif; ?>
     <?php endif; ?>
+    
     <form action="#" method="post">
 
         <input type="text" name="username" id="username" placeholder="username :">

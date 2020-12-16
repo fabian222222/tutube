@@ -111,6 +111,7 @@
     <header>
         <?php require('menu.php') ?>
     </header>  
+
     <?php if(isset($title) && !empty($title) && strlen($title) < 101 && isset($link) && !empty($link) && strlen($link) < 256 && preg_match($link_validator, $link) && isset($description)  && !empty($description)): ?>
         <?php if($link_search): ?>
             <p class="success">This video is already existing</p>
@@ -118,7 +119,9 @@
             <p class="success">Video upload with success</p>
         <?php endif; ?>
     <?php endif; ?>
+
     <form action="#" method="post">
+
         <input type="text" name="title" id="title" placeholder="Title :">
         <?php if(isset($title)): ?>
             <?php if(empty($title) || strlen($title) > 100): ?>
@@ -126,6 +129,7 @@
             <?php endif; ?>
         <?php endif; ?>
         <br><br>
+
         <input type="text" name="link" id="link" placeholder="Link :">
         <?php if(isset($link)): ?>
             <?php if(empty($link) || strlen($link) > 255): ?>
@@ -136,6 +140,7 @@
             <?php  endif; ?>
         <?php endif; ?>
         <br><br>
+
         <textarea name="description" id="description" placeholder="Description :"></textarea>
         <?php if(isset($description)): ?>
             <?php if(empty($description)): ?>
@@ -143,7 +148,9 @@
             <?php endif; ?>
         <?php endif; ?>
         <br><br>
+
         <input type="submit" class="button" value="Add video">
+        
     </form>
 </body>
 </html>
