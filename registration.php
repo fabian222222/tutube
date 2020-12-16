@@ -154,7 +154,7 @@ if(isset($_POST['username']) && isset($_POST['mail']) && isset($_POST['password'
                 <p>This field is not valid</p>
             <?php endif; ?>
             <?php if($users_mail): ?>
-                <p>This mail exsit already</p>
+                <p>the mail already exists</p>
             <?php endif; ?>
         <?php endif; ?>   
         <br><br>
